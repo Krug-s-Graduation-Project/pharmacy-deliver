@@ -1,6 +1,8 @@
 const baseRoutes = {
   // AUTHENTICATION ROUTES
-  login: "/login",
+  auth: {
+    login: "/login",
+  },
 
   // MAIN ROUTES
   root: "/",
