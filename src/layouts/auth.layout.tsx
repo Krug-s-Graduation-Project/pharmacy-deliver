@@ -1,7 +1,12 @@
+import { isAuthenticatedAtom } from "@/atoms";
+import { routes } from "@/config";
 import { motion } from "framer-motion";
-import { Outlet } from "react-router-dom";
+import { useAtomValue } from "jotai";
+import { Navigate, Outlet } from "react-router-dom";
 
 export default function AuthLayout() {
+  const isAuthenticated = useAtomValue(isAuthenticatedAtom)
+  if (isAuthenticated) return <Navigate to={routes.delivery.root} replace />
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50/50 to-teal-50/30 dark:from-green-950/60 dark:via-emerald-950/40 dark:to-teal-950/30 flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background decorations */}
