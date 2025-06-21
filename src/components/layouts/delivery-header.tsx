@@ -3,7 +3,7 @@ import { useAtomValue } from "jotai";
 import { SquareTerminal } from "lucide-react";
 import { Badge } from "../custom/badge";
 import { ModeSwitcher } from "../mode-switcher";
-import { DeliveryNavMobile, DeliveryNavPC, DeliveryNavUser } from "./delivery";
+import { DeliveryNavMobile, DeliveryNavPC, DeliveryNavUser, DeliveryOrderStatus } from "./delivery";
 
 export default function DeliveryHeader() {
   const user = useAtomValue(userAtom)
@@ -34,10 +34,9 @@ export default function DeliveryHeader() {
               )}
             </div>
             <nav className="flex items-center gap-1.5">
+              <DeliveryOrderStatus />
               <ModeSwitcher />
-              <div className="flex items-center gap-2 pl-2">
-                {user && <DeliveryNavUser user={user} />}
-              </div>
+              {user && <DeliveryNavUser user={user} />}
             </nav>
           </div>
         </div>
