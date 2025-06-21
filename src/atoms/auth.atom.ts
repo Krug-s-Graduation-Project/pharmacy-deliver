@@ -9,6 +9,8 @@ import { atom } from "jotai";
 export const userAtom = atom<User | null>(null);
 // Atom lưu trữ token
 export const tokenAtom = atom<string>(getAccessToken());
+// Atom cho trạng thái loading của user
+export const userLoadingAtom = atom<boolean>(false);
 // Atom cho việc cập nhật token
 export const updateTokenAtom = atom(null, (_, set, newToken: string) => {
   set(tokenAtom, newToken);
@@ -25,12 +27,15 @@ export const logoutAtom = atom(null, (_, set) => {
 export const fetchUserProfileAtom = atom(null, async (get, set) => {
   const token = get(tokenAtom);
   if (token) {
+    set(userLoadingAtom, true);
     try {
       const userData = await AuthAPI.fetchUserInfo();
       set(userAtom, userData);
     } catch {
       set(userAtom, null);
       set(updateTokenAtom, "");
+    } finally {
+      set(userLoadingAtom, false);
     }
   }
 });

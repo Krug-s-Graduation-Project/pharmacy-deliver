@@ -1,5 +1,5 @@
-import { AuthLayout } from "@/components/ui/layouts";
 import { routes } from "@/config/routes";
+import { AuthLayout, DeliveryLayout } from "@/layouts";
 import { DeliveryPage, LoginPage } from "@/page";
 import { Navigate, RouteObject } from "react-router-dom";
 
@@ -18,7 +18,12 @@ export const reactRouter: RouteObject[] = [
     element: <Navigate to={routes.delivery.root} />
   },
   {
-    path: routes.delivery.root,
-    element: <DeliveryPage />,
+    element: <DeliveryLayout />,
+    children: [
+      {
+        path: routes.delivery.root,
+        element: <DeliveryPage />,
+      }
+    ]
   }
-]
+] 

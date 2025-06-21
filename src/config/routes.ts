@@ -20,7 +20,7 @@ const baseRoutes = {
 
 export const routeNames = {
   // MAIN NAME ROUTES
-  [baseRoutes.delivery.root]: "Giao hàng",
+  [baseRoutes.delivery.root]: "Quản lý giao hàng",
 
   // AUTHENTICATION NAME ROUTES
 };
