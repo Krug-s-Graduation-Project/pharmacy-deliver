@@ -1,6 +1,7 @@
 import { OrderDelivery } from "@/data/interfaces";
 import { formatCurrency } from "@/lib/format-currency";
 import { Package, ShoppingBag } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 export const OrderCardProductList = ({ order }: { order: OrderDelivery }) => {
   return (
@@ -17,10 +18,10 @@ export const OrderCardProductList = ({ order }: { order: OrderDelivery }) => {
             {/* Ảnh sản phẩm */}
             <div className="relative">
               <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600">
-                {item.medicine.thumbnail?.url ? (
+                {item.medicine?.thumbnail?.url ? (
                   <img
-                    src={item.medicine.thumbnail.url}
-                    alt={item.medicine.thumbnail.alt || item.medicine.name}
+                    src={getImageUrl(item.medicine.thumbnail.url)}
+                    alt={item.medicine.thumbnail?.alt || item.medicine.name || 'Thuốc'}
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -38,7 +39,7 @@ export const OrderCardProductList = ({ order }: { order: OrderDelivery }) => {
             {/* Thông tin sản phẩm */}
             <div className="flex-1">
               <h4 className="font-semibold text-gray-900 dark:text-white text-sm leading-tight">
-                {item.medicine.name}
+                {item.medicine?.name || 'Không có tên'}
               </h4>
               <div className="flex items-center justify-between mt-2">
                 <div className="text-xs text-gray-500 dark:text-gray-400">
